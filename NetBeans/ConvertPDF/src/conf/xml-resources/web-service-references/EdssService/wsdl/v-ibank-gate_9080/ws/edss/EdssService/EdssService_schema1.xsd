@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.athena.ru/ws/edss" version="1.0" targetNamespace="http://www.athena.ru/ws/edss">
+
+  <xs:element name="DEVReestrDelete" type="tns:DEVReestrDelete"></xs:element>
+
+  <xs:element name="DEVReestrDeleteResponse" type="tns:DEVReestrDeleteResponse"></xs:element>
+
+  <xs:element name="DEVReestrInsert" type="tns:DEVReestrInsert"></xs:element>
+
+  <xs:element name="DEVReestrInsertResponse" type="tns:DEVReestrInsertResponse"></xs:element>
+
+  <xs:complexType name="DEVReestrDeleteResponse">
+    <xs:sequence>
+      <xs:element name="ErrorMessage" type="xs:string" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DEVReestrInsert">
+    <xs:sequence>
+      <xs:element name="DevType" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="DevSource" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="FileName" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="Content" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="DocID" type="xs:long"></xs:element>
+      <xs:element name="DocLabel" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="DocOperDate" type="xs:dateTime" minOccurs="0"></xs:element>
+      <xs:element name="User" type="xs:string" minOccurs="0"></xs:element>
+      <xs:element name="SysFilial" type="xs:double"></xs:element>
+      <xs:element name="Sign" type="xs:string" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DEVReestrInsertResponse">
+    <xs:sequence>
+      <xs:element name="ErrorMessage" type="xs:string" minOccurs="0"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="DEVReestrDelete">
+    <xs:sequence>
+      <xs:element name="DocID" type="xs:long"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
