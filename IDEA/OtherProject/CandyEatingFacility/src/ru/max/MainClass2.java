@@ -55,18 +55,7 @@ public class MainClass2 {
 
         cefi.launch(candies, candyEaters);
 
-        /*try {
-            TimeUnit.SECONDS.sleep(Long.parseLong(args[3]));
-        } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
-
         System.out.println("end");
-        //cefi.shutdown();
 
     }
 

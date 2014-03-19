@@ -5,9 +5,12 @@ import ru.CandyEater;
 import ru.CandyEatingFacility;
 import ru.Flavour;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
@@ -15,7 +18,7 @@ import java.util.concurrent.*;
  */
 public class CandyEatingFacilityImpl implements CandyEatingFacility {
 
-    private class InnerCandyEaterImpl implements Runnable {
+    private class InnerCandyEaterImpl implements Callable<Integer> {
 
         CandyEater candyEater;
 
@@ -24,25 +27,17 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
         }
 
         @Override
-        public void run() {
-            // eaters eat candies until all candies is not empty, then wait
+        public Integer call() {
             System.out.println("eater " + candyEater.hashCode() + " start eating");
             Candy candyForEating;
-            while (true) {
+            while (!isShutdown.get()) {
                 if ((candyForEating = findCandy()) != null){
                     candyEater.eat(candyForEating);
                     eatingFlavourSet.remove(candyForEating.getFlavour());
-                    notifyAll(); // !!! нужно перенисти в синхронизированный блок
-                }else{
-                    try {
-                        System.out.println("eater " + candyEater.hashCode() + " is waiting");
-                        wait();  // !!! нужно перенисти в синхронизированный блок
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                    waitOrNotify(true);
                 }
             }
-
+            return 0;
         }
 
     }
@@ -51,9 +46,9 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
 
         CopyOnWriteArraySet<Flavour> eatingFlavourSetLocal = eatingFlavourSet;  // local copy eatingFlavourSet
 
-            //boolean candyFromBuffer = false;
-            //Flavour flavourCurrent;
         if (candies.isEmpty() && bufferCandyList.isEmpty()){
+            System.out.println("shutdown");
+            isShutdown.set(true);
             shutdown();
         }else{
 
@@ -61,18 +56,10 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
             for (Candy i : bufferCandyList) {
                 if (!eatingFlavourSetLocal.contains(i.getFlavour())) {
                     eatingFlavourSet.add(i.getFlavour());
-                    //return i;
                     bufferCandyList.remove(i);
-                        //eatingFlavourSet.remove(i.getFlavour());
-                        //candyFromBuffer = true;
                     return i;
                 }
             }
-
-            /*if (!candyFromBuffer && candies.isEmpty()) {
-                System.out.println("eater: " + this.candyEater.hashCode() + " finished");
-                break;
-            }*/
 
             //second find in original Queue
             if (!candies.isEmpty()) {
@@ -86,14 +73,30 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
                     }
                 }
             }
+            waitOrNotify(false);
         }
         return  null;
     }
 
-    private ExecutorService service;                            // service for streams control
+    private synchronized void waitOrNotify(boolean notify){
+        if (notify){
+            notifyAll();
+        }else{
+            try {
+                System.out.println("waiting");
+                wait();
+                System.out.println("continue");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private ExecutorService service;                                    // service for streams control
     private BlockingQueue<Candy> candies;
-    private LinkedList<Candy> bufferCandyList;                  // ordered list candies that are not in the queue but should be eaten
-    private CopyOnWriteArraySet<Flavour> eatingFlavourSet;      // flavours that are eaten at this time
+    private LinkedList<Candy> bufferCandyList;                          // ordered list candies that are not in the queue but should be eaten
+    private CopyOnWriteArraySet<Flavour> eatingFlavourSet;              // flavours that are eaten at this time
+    private final AtomicBoolean isShutdown = new AtomicBoolean(false);
 
     @Override
     public void launch(BlockingQueue<Candy> candies, Set<CandyEater> candyEaters) {
@@ -102,22 +105,28 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
             throw new IllegalArgumentException("candies or candyEaters is null");
         }
 
-        // todo if candies.isEmpty()
-        // todo if candyEaters.isEmpty()
+        if (candyEaters.isEmpty()) {
+            throw new IllegalArgumentException("candyEaters is empty");
+        }
 
-        service = Executors.newFixedThreadPool(candyEaters.size()); // create pool of quantity eaters of candy
+        service = Executors.newFixedThreadPool(candyEaters.size());                         // create pool of quantity eaters of candy
         this.candies = candies;
         this.bufferCandyList = new LinkedList<Candy>();
         this.eatingFlavourSet = new CopyOnWriteArraySet<Flavour>();
+        List<Future<Integer>> threadResults= new ArrayList<Future<Integer>>();              //Threads results can be stored in the collection of Futures
         for (CandyEater i : candyEaters) {
-            service.execute(new InnerCandyEaterImpl(i));
+            threadResults.add(service.submit(new InnerCandyEaterImpl(i)));
         }
-        // !!! здесь нужно корректно ждать shutdown, а потом возвращать управление (использовать Future)
-        /*try {
-            wait();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
+        for (Future<Integer> future : threadResults) {
+            try {
+                future.get();
+                System.out.println("shutdown fine");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
