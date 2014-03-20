@@ -67,7 +67,7 @@
       <file leaf-file-name="CandyEatingFacilityImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEatingFacilityImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="12" selection-start="579" selection-end="645" vertical-scroll-proportion="0.0" vertical-offset="2008" max-vertical-offset="2482">
+            <state line="26" column="12" selection-start="579" selection-end="645" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2601">
               <folding />
             </state>
           </provider>
@@ -76,7 +76,7 @@
       <file leaf-file-name="MainClass2.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="61" selection-start="976" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="614" max-vertical-offset="1139">
+            <state line="33" column="61" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1292">
               <folding />
             </state>
           </provider>
@@ -85,13 +85,8 @@
       <file leaf-file-name="CandyImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-              <folding>
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#226#227#0" expanded="true" />
-                <element signature="e#273#274#0" expanded="true" />
-                <element signature="e#311#312#0" expanded="true" />
-              </folding>
+            <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="459">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,10 +94,8 @@
       <file leaf-file-name="CandyEaterImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEaterImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="544">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="544">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,10 +103,8 @@
       <file leaf-file-name="CandyEatingFacilityImpl.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="13" selection-start="4286" selection-end="4286" vertical-scroll-proportion="0.72517323" vertical-offset="1760" max-vertical-offset="2278">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="105" column="13" selection-start="3560" selection-end="3560" vertical-scroll-proportion="0.488178" vertical-offset="1315" max-vertical-offset="2057">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +112,7 @@
       <file leaf-file-name="CandyEatingFacility.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/CandyEatingFacility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="8" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="172" max-vertical-offset="646">
+            <state line="26" column="8" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="663">
               <folding />
             </state>
           </provider>
@@ -183,8 +174,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -193,8 +182,60 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OtherProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CandyEatingFacility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OtherProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CandyEatingFacility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OtherProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CandyEatingFacility" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="max" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -213,7 +254,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CandyEatingFacility/CandyEatingFacility.iml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../modernwebdevelopment" />
     <property name="FullScreen" value="false" />
     <property name="dynamic.classpath" value="false" />
   </component>
@@ -296,9 +337,6 @@
       <option name="SELECTION" value="0" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="externalProjectPath" />
@@ -312,6 +350,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
@@ -375,25 +416,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
-      <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
       <option name="BCName" value="" />
       <option name="IOSSimulatorSdkPath" value="" />
@@ -427,6 +449,25 @@
       <option name="screenWidth" value="0" />
       <option name="url" value="http://" />
       <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <list size="2">
@@ -468,16 +509,16 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17779204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17779204" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38389263" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -504,6 +545,132 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="12" selection-start="579" selection-end="645" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2601">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="61" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEaterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="13" selection-start="3560" selection-end="3560" vertical-scroll-proportion="0.0" vertical-offset="1785" max-vertical-offset="2057">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/CandyEatingFacility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="12" selection-start="579" selection-end="645" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2601">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="61" selection-start="976" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1139">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEaterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="13" selection-start="4228" selection-end="4228" vertical-scroll-proportion="0.0" vertical-offset="2074" max-vertical-offset="2431">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/CandyEatingFacility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="12" selection-start="579" selection-end="645" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="2601">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="61" selection-start="976" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="1139">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="459">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEaterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="544">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="122" column="13" selection-start="4228" selection-end="4228" vertical-scroll-proportion="0.0" vertical-offset="2074" max-vertical-offset="2431">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/CandyEatingFacility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="8" selection-start="827" selection-end="827" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="13" selection-start="1874" selection-end="1874" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1343">
@@ -514,9 +681,7 @@
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="128" column="16" selection-start="5314" selection-end="5314" vertical-scroll-proportion="0.0" vertical-offset="2176" max-vertical-offset="2397">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -542,64 +707,14 @@
         <state line="32" column="9" selection-start="1052" selection-end="1052" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="646" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/ivan/CandyEaterImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="0" selection-end="1" vertical-scroll-proportion="0.03586498" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/ivan/CandyImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/ivan/FlavourImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/.idea/.name">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/ivan/CandyEatingFacilityImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748" />
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.7.0_11/src.zip!/java/util/Queue.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="198" column="6" selection-start="7458" selection-end="7458" vertical-scroll-proportion="0.33333334" vertical-offset="2647" max-vertical-offset="3247" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/max/MainClass2.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/max/FlavourImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/max/CandyImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/max/CandyEaterImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/ivan/TestMain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="45" selection-start="206" selection-end="206" vertical-scroll-proportion="0.25105485" vertical-offset="0" max-vertical-offset="474" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CandyEatingFacility/out/production/CandyEatingFacility/ru/max/CandyEatingFacilityImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="527" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/Candy.java">
@@ -611,9 +726,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEaterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="32" selection-start="578" selection-end="578" vertical-scroll-proportion="0.6814346" vertical-offset="0" max-vertical-offset="612">
-          <folding />
-        </state>
+        <state line="22" column="32" selection-start="578" selection-end="578" vertical-scroll-proportion="0.6814346" vertical-offset="0" max-vertical-offset="612" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/CandyEatingFacility.java">
@@ -625,9 +738,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/TestMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="211" selection-end="211" vertical-scroll-proportion="-0.14767933" vertical-offset="138" max-vertical-offset="663">
-          <folding />
-        </state>
+        <state line="10" column="13" selection-start="211" selection-end="211" vertical-scroll-proportion="-0.14767933" vertical-offset="138" max-vertical-offset="663" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/ivan/CandyEatingFacilityImpl.java">
@@ -640,37 +751,28 @@
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="13" selection-start="98" selection-end="98" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
-          <folding>
-            <element signature="e#196#197#0" expanded="true" />
-            <element signature="e#226#227#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#311#312#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEaterImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="544">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/MainClass2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="61" selection-start="976" selection-end="976" vertical-scroll-proportion="0.0" vertical-offset="563" max-vertical-offset="1139">
+        <state line="33" column="61" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1292">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CandyEatingFacility/src/ru/max/CandyEatingFacilityImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="13" selection-start="4286" selection-end="4286" vertical-scroll-proportion="0.72517323" vertical-offset="1760" max-vertical-offset="2278">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="105" column="13" selection-start="3560" selection-end="3560" vertical-scroll-proportion="0.488178" vertical-offset="1315" max-vertical-offset="2057">
+          <folding />
         </state>
       </provider>
     </entry>

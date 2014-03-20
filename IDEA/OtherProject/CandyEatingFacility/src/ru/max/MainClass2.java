@@ -20,6 +20,7 @@ public class MainClass2 {
         System.out.println("quantity eaters: " + args[0]);
         System.out.println("quantity candies: " + args[1]);
         System.out.println("quantity flavours: " + args[2]);
+        System.out.println("time(sec.) to work: " + args[3]);
         System.out.println("begin");
 
         //create set eaters of candy
@@ -54,6 +55,14 @@ public class MainClass2 {
         CandyEatingFacilityImpl cefi = new CandyEatingFacilityImpl();
 
         cefi.launch(candies, candyEaters);
+
+        try {
+            TimeUnit.SECONDS.sleep(Long.parseLong(args[3]));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        cefi.shutdown();
 
         System.out.println("end");
 

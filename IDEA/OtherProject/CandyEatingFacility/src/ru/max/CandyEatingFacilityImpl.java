@@ -5,16 +5,15 @@ import ru.CandyEater;
 import ru.CandyEatingFacility;
 import ru.Flavour;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
 /**
  * @author panfilov_ms
+ * как я понял из задания, конфеты разных вкусов поедаются в порядке очереди
+ * и потоки поедателей не нужно завершать, если очередь пустая
  */
 public class CandyEatingFacilityImpl implements CandyEatingFacility {
 
@@ -44,13 +43,7 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
 
     private synchronized Candy findCandy(){
 
-        CopyOnWriteArraySet<Flavour> eatingFlavourSetLocal = eatingFlavourSet;  // local copy eatingFlavourSet
-
-        if (candies.isEmpty() && bufferCandyList.isEmpty()){
-            System.out.println("shutdown");
-            isShutdown.set(true);
-            shutdown();
-        }else{
+        Set<Flavour> eatingFlavourSetLocal = new HashSet<Flavour>(eatingFlavourSet);  // local copy eatingFlavourSet
 
             //first find in buffer
             for (Candy i : bufferCandyList) {
@@ -73,8 +66,8 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
                     }
                 }
             }
-            waitOrNotify(false);
-        }
+        waitOrNotify(false);
+
         return  null;
     }
 
@@ -117,20 +110,12 @@ public class CandyEatingFacilityImpl implements CandyEatingFacility {
         for (CandyEater i : candyEaters) {
             threadResults.add(service.submit(new InnerCandyEaterImpl(i)));
         }
-        for (Future<Integer> future : threadResults) {
-            try {
-                future.get();
-                System.out.println("shutdown fine");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
     public void shutdown() {
+        waitOrNotify(true);
+        isShutdown.set(true);
         service.shutdown();
 
     }
