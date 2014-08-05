@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Первичная обработка заявок </title>
+        
+        <link rel="stylesheet" type="text/css" href="./MainStyles.css"/>
+    </h:head>
+    <h:body>
+            <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputLabel for="username" value="Username:" />  
+            <h:inputText value="#{technicalSessionBean.currentUser}"   
+                    id="username" required="true" label="username" />  
+              
+            <h:outputLabel for="password" value="Password:" />  
+            <h:inputSecret value="#{technicalSessionBean.currentPassword}"   
+                    id="password" required="true" label="password" />  
+              
+            <f:facet name="footer">  
+                <p:commandButton id="loginButton" value="Login" 
+                    onclick="login.hide()"/>  
+            </f:facet>  
+            </h:panelGrid>
+    </h:body>
+</html>
+

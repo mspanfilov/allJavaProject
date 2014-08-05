@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://v-ibank-gate:9080/ws/edss/EdssService/EdssService.wsdl" uri="wsdl/v-ibank-gate_9080/ws/edss/EdssService/EdssService.wsdl"/>
+    <system systemId="http://v-ibank-gate:9080/ws/edss/EdssService/EdssService_schema1.xsd" uri="wsdl/v-ibank-gate_9080/ws/edss/EdssService/EdssService_schema1.xsd"/>
+    <system systemId="http://v-ibank-gate:9080/ws/edss/EdssService/EdssService_schema2.xsd" uri="wsdl/v-ibank-gate_9080/ws/edss/EdssService/EdssService_schema2.xsd"/>
+</catalog>

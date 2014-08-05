@@ -1,0 +1,696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+        <title>Первичная обработка заявок </title>
+
+        <link rel="stylesheet" type="text/css" href="./MainStyles.css"/>
+        
+</h:head>
+
+<h:body> 
+ 
+<script type="text/javascript">
+PrimeFaces.locales ['ru'] = {    closeText: 'Закрыть',    prevText: 'Назад',    nextText: 'Вперёд',    
+    monthNames: ['Январь', 'Февраль' , 'Март' , 'Апрель' , 'Май' , 'Июнь' , 'Июль' , 'Август' , 'Сентябрь','Октябрь','Ноябрь','Декабрь' ],    
+    monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек' ],    
+    dayNames: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Субота'],    
+    dayNamesShort: ['Воск','Пон' , 'Вт' , 'Ср' , 'Четв' , 'Пят' , 'Суб'],    dayNamesMin: ['В', 'П', 'Вт', 'С ', 'Ч', 'П ', 'Сб'],    
+    weekHeader: 'Неделя',    firstDay: 1,    isRTL: false,    showMonthAfterYear: false,    yearSuffix:'',    timeOnlyTitle: 'Только время',    
+    timeText: 'Время',    hourText: 'Час',    minuteText: 'Минута',    secondText: 'Секунда',    currentText: 'Сегодня',    
+    ampm: false,    month: 'Месяц',    week: 'неделя',    day: 'День',    allDayText: 'Весь день'};
+</script>        
+    
+<script type="text/javascript">
+PrimeFaces.locales ['ar'] = {    closeText: 'إغلق',    prevText: 'إلى الخلف',    nextText: 'إلى الأمام',    currentText: 'بداية',    
+    monthNames: ['ديسمبر', 'نوفمبر', 'أكتوبر', 'سبتمبر', 'أغسطس', 'يوليو', 'يونيو', 'مايو', 'ابريل', 'مارس', 'فبراير', 'يناير' ],    
+    monthNamesShort: ['ديسمبر', 'نوفمبر', 'أكتوبر', 'سبتمبر', 'أغسطس', 'يوليو', 'يونيو', 'مايو', 'ابريل', 'مارس', 'فبراير', 'يناير' ],    
+    dayNames: ['يوم الأحد‎', 'يوم الإثنين‎', 'يوم الثلاثاء‎', '‏يوم الأَرْبعاء‎', '‏يوم الخَمِيس‎', 'يوم الجُمْعَة‎‎', 'يوم السَّبْت'],    
+    dayNamesShort: ['الأحد‎', 'الإثنين‎', 'الثلاثاء‎', 'الأَرْبعاء‎', 'الخَمِيس‎', 'الجُمْعَة‎‎', 'السَّبْت'],    dayNamesMin: ['الأحد‎', 'الإثنين‎', 'الثلاثاء‎', 'الأَرْبعاء‎', 'الخَمِيس‎', 'الجُمْعَة‎‎', 'السَّبْت'],    
+    weekHeader: 'الأسبوع',    firstDay: 1,    isRTL: false,    showMonthAfterYear: false,    yearSuffix:'' ,    timeOnlyTitle: 'الوقت فقط' ,    
+    timeText: 'الوقت' ,    hourText: 'ساعة',    minuteText: 'دقيقة',    secondText: 'ثانية',    
+    ampm: false,    month: 'الشهر',    week: 'الأسبوع',    day: 'اليوم',    allDayText: 'سا ئراليوم'};
+</script> 
+    
+        <p:ajaxStatus id="ajaxStatusPanel" onstart="statusDialog.show()" oncomplete="statusDialog.hide()"/>	
+        
+        <p:dialog modal="true" widgetVar="statusDialog" header="Обновляем данные..." styleClass="tRequest" resizable="false" draggable="false" closable="false" visible="false">
+            <h:graphicImage value="wait30trans.gif" />
+            
+        </p:dialog> 
+        
+            <h:form id="headForm" style="overflow:auto; margin-left:1%; margin-right:1%; width:98%" styleClass="tRequest">
+
+                <p:commandButton id="refresh" title="обновить"
+                                 update=":headForm :mainForm:mainTableSP :mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable"
+                                 icon="ui-icon-refresh" action="#{tRequestBean.refresh()}"/>                       
+                <p:commandButton id="createCall" widgetVar="createCall" title="создать звонок по заявке" 
+                                 update=":mainForm:createCallDisplay" icon="ui-icon-volume-on" disabled="true"
+                                 actionListener="#{technicalSessionBean.startTimerCall()}" action="#{insReqCallBean.showTimerCall()}" onclick="createCallDialog.show()"/>
+                <p:commandButton id="createPrezayavka" widgetVar="createPrezayavka" title="создать заявку по звонку" 
+                                 update=":mainFormCPD1:createPrezayavkaDisplay" icon="ui-icon-document"
+                                 actionListener="#{technicalSessionBean.startTimerCall()}" action="#{insReqCallBean.showTimerCall()}" onclick="createPrezayavkaDialog.show()"/>
+                <p:commandButton id="changePrezayavka" widgetVar="changePrezayavka" title="изменить заявку" 
+                                 icon="ui-icon-pencil" disabled="true" 
+                                 onclick="changePrezayavkaDialog.show()"/>
+                    
+            </h:form>
+        
+            <h:form id="headFilterForm" style="overflow:auto; margin-left:1%; margin-right:1%; width:98%" styleClass="tRequest">
+                <h:outputLabel value="Дата с: "/>
+                <p:calendar id="nDateStart" value="#{tRequestBean.filter.dateStart}" showOn="button" navigator="true" locale="ru"
+                            showButtonPanel="true" effect="slideDown" effectDuration="slideDown" pattern="dd.MM.yyyy">
+                <p:ajax event="dateSelect" listener="#{tRequestBean.refresh()}" 
+                            update=":headForm :mainForm:mainTableSP :mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable" />
+                </p:calendar>
+                
+                <h:outputLabel value=" по: "/>
+                <p:calendar id="nDateEnd" value="#{tRequestBean.filter.dateEnd}" showOn="button" navigator="true" locale="ru"
+                    showButtonPanel="true" effect="slideDown" effectDuration="slideDown" pattern="dd.MM.yyyy" >
+                <p:ajax event="dateSelect" listener="#{tRequestBean.refresh()}" 
+                            update=":headForm :mainForm:mainTableSP :mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable" />
+                </p:calendar>
+            </h:form>
+    
+	    <h:form id="mainForm" style="overflow:auto; margin-left:1%; margin-right:1%; width:98%">
+                <p:scrollPanel id="mainTableSP" style="height: 450px" styleClass="tRequest" mode="native"> 
+                    <p:dataTable id="mainTable" value="#{tRequestBean.reqList}" var="t" 
+                             styleClass="tRequest" 
+                             rowStyleClass="#{t.statusName == 'Новая' ? 'tRequestGreen' : t.statusName == 'Разговор не состоялся' or t.statusName == 'Клиент думает' or t.statusName == 'Неудобно разговаривать' ? 'tRequestBlue' : 'tRequest'}"
+                             rowKey="#{t.reqID}" selection="#{tRequestBean.selectedReq}" selectionMode="single"
+                             paginator="true" rows="10" rowsPerPageTemplate="5,6,7,8,9,10,11,12,13,14,15,20,25,30,40,50" paginatorPosition="top"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             > 
+                             <!--sortBy="#{t.CDate}" sortOrder="descending"-->
+                             
+                  <p:ajax event="rowSelect" listener="#{tRequestBean.saveSelectedReq()}" oncomplete="changePrezayavka.enable(), createCall.enable()"  
+                          update=":mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable"/>
+                  <p:ajax event="rowUnselect" oncomplete="changePrezayavka.disable(), createCall.disable()"                                                 
+                          update=":mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable"/>
+                  <p:ajax event="rowDblselect" oncomplete="changePrezayavkaDialog.show()"/>  
+                  
+                        <p:column headerText="Заявка №" sortBy="#{t.resID}">
+                        <h:outputText value="#{t.resID}" />  
+			</p:column>
+                    
+                        <p:column headerText="Тип" sortBy="#{t.frmName}">
+                        <h:outputText value="#{t.frmName}" />  
+			</p:column>
+					
+                        <p:column headerText="Время" sortBy="#{t.CDate}">
+                        <h:outputText value="#{t.CSDate}" /> 
+			</p:column>
+			
+                        <p:column headerText="Фамилия" sortBy="#{t.LName}">
+                        <h:outputText value="#{t.LName}" /> 
+			</p:column>
+                    
+                        <p:column headerText="Имя" sortBy="#{t.FName}">
+			<h:outputText value="#{t.FName}" /> 
+			</p:column>
+                    
+                    	<p:column headerText="Отчество" sortBy="#{t.SName}">
+			<h:outputText value="#{t.SName}" /> 
+			</p:column>
+			
+			<p:column headerText="Телефон" sortBy="#{t.phone}">
+			<h:outputText value="#{t.phone}" /> 
+			</p:column>
+                  
+                        <p:column headerText="E-mail" sortBy="#{t.emaill}">
+			<h:outputText value="#{t.emaill}" /> 
+			</p:column>
+			
+                        <p:column headerText="Регион" sortBy="#{t.region}">
+			<h:outputText value="#{t.region}" /> 
+			</p:column>
+                    
+                    	<p:column headerText="Источник" sortBy="#{t.source}">
+			<h:outputText value="#{t.source}" /> 
+			</p:column>
+                    
+			<p:column headerText="Статус" sortBy="#{t.statusName}">
+			<h:outputText value="#{t.statusName}" /> 
+			</p:column>
+                              
+                        <p:column headerText="Повторный звонок" sortBy="#{t.NDate}">
+			<h:outputText value="#{t.NSDate}" /> 
+			</p:column>
+			
+                        <p:column headerText="Время звонка" sortBy="#{t.TSDate}">
+			<h:outputText value="#{t.TSDate}" /> 
+			</p:column>
+                  
+                        <p:column headerText="Оператор" sortBy="#{t.operator}">
+			<h:outputText value="#{t.operator}" /> 
+			</p:column>
+                  
+                        <p:column headerText="Продукт" sortBy="#{t.product}">
+			<h:outputText value="#{t.product}" /> 
+			</p:column>
+                  
+                        <p:column headerText="Повт. звон. время">
+                        <h:outputText value="#{t.period}" /> 
+			</p:column>
+                  
+                        <p:column headerText="Встреча">
+                        <h:outputText value="#{t.MSDate}" /> 
+			</p:column>
+			
+		</p:dataTable>
+                </p:scrollPanel>
+                
+                
+                <p:dialog id="createCallDialog" header="Звонок" widgetVar="createCallDialog" resizable="false" modal="true"
+                          width="900" styleClass="tRequest" closable="false"> 
+                    
+                    <h:panelGrid id="createCallDisplay" columns="1">
+                        
+                    <h:panelGrid id="createCallDisplay1" columns="6">
+                    <h:outputText value="Заявка №:" />  
+                    <p:inputText id="resIDCCD" value="#{tRequestBean.selectedReq.resID}" disabled="true"/>     
+                    <h:outputText value="Время:" />
+                    <p:inputText id="cSDateCCD" value="#{tRequestBean.selectedReq.CSDate}" disabled="true"/>  
+                    <h:outputLabel value="Тип заявки:" />  
+                    <p:inputText id="frmNameCCD" value="#{tRequestBean.selectedReq.frmName}" disabled="true"/> 
+
+                    <h:outputLabel value="Фамилия: " />  
+                    <p:inputText id="LNameCCD" value="#{tRequestBean.selectedReq.LName}" disabled="true"/>  
+                    <h:outputLabel value="Телефон: " /> 
+                    <p:inputText id="phoneCCD" value="#{tRequestBean.selectedReq.phone}" disabled="true"/>
+                    <h:outputLabel value="Источник: " />   
+                    <p:selectOneMenu id="sourceCCD" value="#{tRequestBean.selectedReq.product}" disabled="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tOfficeBean.offStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Имя: " /> 
+                    <p:inputText id="FNameCCD" value="#{tRequestBean.selectedReq.FName}" disabled="true"/>
+                    <h:outputLabel value="E-mail: " /> 
+                    <p:inputText id="emaillCCD" value="#{tRequestBean.selectedReq.emaill}" disabled="true"/> 
+                    <h:outputLabel value="Удобный ДО: " /> 
+                    <p:selectOneMenu id="DOCCD" value="#{tRequestBean.selectedReq.product}" disabled="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tOfficeBean.offStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Отчество: " />
+                    <p:inputText id="SNameCCD" value="#{tRequestBean.selectedReq.SName}" disabled="true"/>
+                    <h:outputLabel value="Регион: " />   
+                    <p:selectOneMenu id="regionCCD" value="#{tRequestBean.selectedReq.region}" disabled="true" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tRegionBean.regStringList}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="Тип клиента: " /> 
+                   <!--  <p:inputText id="CTCCD" value="" disabled="true"/> -->
+                
+                    </h:panelGrid>
+                        
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="Параметры кредита: " styleClass="tRequestHeader"/>
+                    
+                    <h:panelGrid id="createCallDisplay2" columns="6">       
+                    <h:outputLabel value="Продукт: " />   
+                    <p:selectOneMenu id="productCCD" value="#{tRequestBean.selectedPro}"  disabled="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tProductBean.proList}"/>
+                    </p:selectOneMenu> 
+                    
+                    <h:outputLabel value="Тариф: " />   
+                    <p:selectOneMenu id="tariffCCD" value="#{tRequestBean.selectedTariff}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tTariffBean.trfList}" var="trf" itemValue="#{trf}" itemLabel="#{trf.trfName}"/>
+                    </p:selectOneMenu>  
+                    
+                    <h:outputLabel value="" /> 
+                    <h:outputLabel value="" /> 
+                    
+                    <h:outputLabel value="Сумма: " /> 
+                    <p:inputText id="valCCD"  disabled="true" value=""/> 
+                    
+                    <h:outputLabel value="Валюта: " />   
+                    <p:selectOneMenu id="currencyCCD" value="#{tRequestBean.selectedCur}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tCurrencyBean.curList}" var="cur" itemValue="#{cur}" itemLabel="#{cur.curName}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Срок: " /> 
+                   <!-- <p:inputText id="termCCD" value="" disabled="true"/> -->
+                          
+                    </h:panelGrid>
+                    
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="Звонок: " styleClass="tRequestHeader"/>
+                    
+                    <h:panelGrid id="createCallDisplay3" columns="6"> 
+                        
+                    <h:outputLabel value="Статус: " />    
+                    <p:selectOneMenu id="callStatusCCD" value="#{insReqCallBean.insertedCall.statusName}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItems value="#{tCallStatusBean.callStatusStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputText value="Время начала:" />
+                    <p:inputText id="cFDateCCD" value="#{insReqCallBean.insertedCall.FSDate}" disabled="true"/> 
+                        
+                    <h:outputText value="Оператор:" />
+                   <!-- <p:inputText id="cOperatorCCD" value="" disabled="true"/> -->
+                    
+                    </h:panelGrid>
+                    
+                    <p:column colspan="1"><h:outputLabel value="Комментарий: " /></p:column>
+                    <p:column colspan="2"><p:inputTextarea id="noteCCD" value="#{insReqCallBean.insertedCall.note}" cols="120" autoResize="false" /></p:column>
+                                   
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="Статус заявки: " styleClass="tRequestHeader"/>
+                    
+                    <h:panelGrid id="changePrezayavkaDisplay3" columns="6">
+                        
+                    <h:outputLabel value="Статус: " />   
+                    <p:selectOneMenu id="statusCCD" value="#{tRequestBean.selectedReq.product}" disabled="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItems value="#{tReqStatusBean.reqStatusStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Повторный звонок: " />
+                    <p:calendar id="nDateCCD" value="#{insReqCallBean.insertedCall.NDate}" showOn="button" readonlyInput="true" locale="ru"
+                                showButtonPanel="true" effect="slideDown" effectDuration="slideDown"/>
+                    
+                    <h:outputLabel value="Время: " />   
+                    <p:selectOneMenu id="timeCCD" value="#{tRequestBean.selectedReq.product}" disabled="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tPeriodBean.perStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    </h:panelGrid>
+                    
+                    <p:column colspan="1"><h:outputLabel value="Комментарий: " /></p:column>
+                    <p:column colspan="2"><p:inputTextarea id="noteCCD1" value="#{tRequestBean.selectedReq.note}" cols="10" disabled="true" autoResize="false" /></p:column>
+                                        
+                    </h:panelGrid>
+                    
+                        <p:commandButton id="createCallDialogOK" style="left: 80%" value="ОК"
+                                         update=":mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable"
+                                         action="#{tCallBean.refresh()}"
+                                         actionListener="#{insReqCallBean.insertCall()}" onclick="createCallDialog.hide()"/>
+                        <p:commandButton id="createCallDialogNO" style="left: 80%" value="Отмена"
+                                         update=":mainForm:createCallDisplay"
+                                         action="#{insReqCallBean.clearTimerCall()}"
+                                         actionListener="#{technicalSessionBean.clearTimerCall()}" onclick="createCallDialog.hide()"/>
+                </p:dialog>
+                
+                 
+
+    <br></br>
+        
+        <p:tabView id="tabView" styleClass="tRequest">
+                                  
+            <p:tab id="tab1" title="Звонки">
+                
+                <p:dataTable id="callTable" value="#{tCallBean.callList}" var="c" 
+                             sortBy="#{c.FDate}" sortOrder="descending"
+                             rowKey="#{c.callID}" selection="#{tCallBean.selectedCall}" selectionMode="single">  
+                    
+                        <p:column headerText="Время" sortBy="#{c.FDate}">
+                        <h:outputText value="#{c.FSDate}" />  
+			</p:column>
+                    
+                        <p:column headerText="Длительность, мин." sortBy="#{c.dur}">
+                        <h:outputText value="#{c.dur}" />  
+			</p:column>
+                    
+                        <p:column headerText="Оператор" sortBy="#{c.operator}">
+                        <h:outputText value="#{c.operator}" />  
+			</p:column>
+                    
+                        <p:column headerText="Статус" sortBy="#{c.statusName}">
+                        <h:outputText value="#{c.statusName}" />  
+			</p:column>
+                                            
+                        <p:column headerText="Комментарий" sortBy="#{c.note}">
+                        <h:outputText value="#{c.note}" />  
+			</p:column>
+                    
+                        <p:column headerText="Повторный звонок" sortBy="#{c.NSDate}">
+                        <h:outputText value="#{c.NSDate}" />  
+			</p:column>
+                    
+                </p:dataTable>
+                
+            </p:tab> 
+            
+            <p:tab id="tab2" title="Анкета">
+                <p:dataTable id="anketaTable" value="#{tWebAnketaBean.webAnketaList}" var="w" rowKey="#{w.fldID}" resizableColumns="true">
+                    
+                        <p:column headerText="Поле:" width="150" style="text-align: left">
+                        <h:outputText value="#{w.fldName}" />  
+			</p:column>
+                    
+                        <p:column headerText="Значение" style="text-align: left">
+                        <h:outputText value="#{w.val}" />  
+			</p:column> 
+                    
+                </p:dataTable>  
+            </p:tab>
+            
+            <p:tab id="tab3" title="Статус">
+                
+                <p:dataTable id="statusTable" value="#{tReqStatusesBean.reqStatusesList}" var="s" 
+                             sortBy="#{s.FDate}" sortOrder="descending"
+                             rowKey="#{s.recID}" selection="#{tReqStatusesBean.selectedReqStatuses}" selectionMode="single">  
+                    
+                        <p:column headerText="Время" sortBy="#{s.FDate}">
+                        <h:outputText value="#{s.FSDate}" />  
+			</p:column>
+                    
+                        <p:column headerText="Оператор" sortBy="#{s.operator}">
+                        <h:outputText value="#{s.operator}" />  
+			</p:column>
+                    
+                        <p:column headerText="Статус" sortBy="#{s.reqStatus}">
+                        <h:outputText value="#{s.reqStatus}" />  
+			</p:column>
+                    
+                        <p:column headerText="Текущий" sortBy="#{s.curStatus}">
+                        <h:outputText value="#{s.curStatus}" />  
+			</p:column>
+                    
+                        <p:column headerText="Финальный" sortBy="#{s.finStatus}">
+                        <h:outputText value="#{s.finStatus}" />  
+			</p:column>
+                    
+                        <p:column headerText="Комментарий" sortBy="#{s.note}">
+                        <h:outputText value="#{s.note}" />  
+			</p:column>
+                        
+                        <p:column headerText="Дата повт. звонка" sortBy="#{s.NDate}">
+                        <h:outputText value="#{s.NSDate}" />  
+			</p:column>
+                    
+                        <p:column headerText="Время повт. звонка" sortBy="#{s.period}">
+                        <h:outputText value="#{s.period}" />  
+			</p:column>
+                    
+                        <p:column headerText="ДО" sortBy="#{s.office}">
+                        <h:outputText value="#{s.office}" />  
+			</p:column>
+                    
+                        <p:column headerText="Доб. в Siebel" sortBy="#{s.siebel}"> 
+                            <p:selectBooleanCheckbox value="#{s.BSiebel}" disabled="true"/> 
+			</p:column>
+                    
+                        <p:column headerText="Встреча" sortBy="#{s.MDate}">
+                        <h:outputText value="#{s.MSDate}" />  
+			</p:column>
+                    
+                </p:dataTable>
+                
+            </p:tab> 
+                                 
+        </p:tabView>   
+    
+    </h:form>   
+    
+            <h:form id="mainFormCPD1">
+                
+                <p:dialog id="createPrezayavkaDialog" header="Звонок" widgetVar="createPrezayavkaDialog" resizable="false" modal="true"
+                          width="900" styleClass="tRequest" closable="false">
+                    
+                    <h:panelGrid id="createPrezayavkaDisplay" columns="1">
+                        
+                    <h:panelGrid id="createPrezayavkaDisplay1" columns="6">
+                        
+                    <h:outputText value="Заявка №:" />  
+                   <!-- <p:inputText id="resIDCPD" value="" disabled="true"/> -->    
+                    <h:outputText value="Время:" />
+                    <p:inputText id="cSDateCPD" value="#{insReqCallBean.insertedCall.FSDate}" disabled="true"/>  
+                    <h:outputLabel value="Тип заявки:" />  
+                    <p:selectOneMenu id="frmNameCPD" value="#{insReqCallBean.insertedReq.frmName}" style="width: 200px" panelStyleClass="tRequest"> 
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tTypeReqBean.typeStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Фамилия: " />  
+                    <p:inputText id="LNameCPD" value="#{insReqCallBean.insertedReq.LName}"/>  
+                    <h:outputLabel value="Телефон: " /> 
+                    <p:inputText id="phoneCPD" value="#{insReqCallBean.insertedReq.phone}"/>
+                    <h:outputLabel value="Источник: " />   
+                    <p:selectOneMenu id="sourceCPD" value="#{insReqCallBean.insertedReq.product}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tSourceBean.sourceList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Имя: " /> 
+                    <p:inputText id="FNameCPD" value="#{insReqCallBean.insertedReq.FName}"/>
+                    <h:outputLabel value="E-mail: " /> 
+                    <p:inputText id="emaillCPD" value="#{insReqCallBean.insertedReq.emaill}"/> 
+                    <h:outputLabel value="Удобный ДО: " /> 
+                    <p:selectOneMenu id="DOCPD" value="#{insReqCallBean.insertedReq.product}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tOfficeBean.offStringList}"/>
+                    </p:selectOneMenu>
+                
+                    <h:outputLabel value="Отчество: " />
+                    <p:inputText id="SNameCPD" value="#{insReqCallBean.insertedReq.SName}"/>
+                    <h:outputLabel value="Регион: " />   
+                    <p:selectOneMenu id="regionCPD" value="#{insReqCallBean.insertedReq.region}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tRegionBean.regStringList}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="Тип клиента: " /> 
+                   <!-- <p:inputText id="CTCPD" value=""/> -->
+                
+                    </h:panelGrid>  
+                        
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="Параметры кредита: " styleClass="tRequestHeader"/>
+                    <h:panelGrid id="createPrezayavkaDisplay2" columns="6">    
+                        
+                    <h:outputLabel value="Продукт: " />   
+                    <p:selectOneMenu id="productCPD" value="#{insReqCallBean.insertedReq.product}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tProductBean.proList}" />
+                    </p:selectOneMenu> 
+                         
+                    <h:outputLabel value="Тариф: " />   
+                    <p:selectOneMenu id="tariffCPD" value="#{tRequestBean.selectedTariff}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tTariffBean.trfList}" var="trf" itemValue="#{trf}" itemLabel="#{trf.trfName}"/>
+                    </p:selectOneMenu> 
+                    
+                    <h:outputLabel value="" /> 
+                    <h:outputLabel value="" /> 
+                    
+                    <h:outputLabel value="Сумма: " /> 
+                    <p:inputText id="valCPD" value="#{insReqCallBean.insertedReq.trfID}"/> 
+                    
+                    <h:outputLabel value="Валюта: " />   
+                    <p:selectOneMenu id="currencyCPD" value="#{tRequestBean.selectedCur}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tCurrencyBean.curList}" var="cur" itemValue="#{cur}" itemLabel="#{cur.curName}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Срок: " /> 
+                   <!-- <p:inputText id="term" value=""/> -->
+                          
+                    </h:panelGrid>
+                        
+                    <h:outputText value="Оператор:" />
+                   <!-- <p:inputText id="cOperatorCPD1" value="" disabled="true"/> -->
+                    
+                    <h:outputLabel value="Статус: " />    
+                    <p:selectOneMenu id="callStatusCPD" value="#{insReqCallBean.insertedCall.statusName}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItems value="#{tCallStatusBean.callStatusStringList}"/>
+                    </p:selectOneMenu>
+
+                    <h:outputLabel value="Повторный звонок: " />
+                    <p:calendar id="nDateCPD" value="#{insReqCallBean.insertedCall.NDate}" showOn="button" readonlyInput="true" locale="ru"
+                                showButtonPanel="true" effect="slideDown" effectDuration="slideDown"/>
+
+                    <h:outputLabel value="Комментарий: " />  
+                    <p:inputTextarea id="noteCPD" value="#{insReqCallBean.insertedCall.note}" cols="100" autoResize="false"/> 
+                    
+                    </h:panelGrid>
+                                                        
+                        <p:commandButton id="createPrezayavkaDialogOK" style="left: 80%" value="ОК"
+                                         update="@all"
+                                         action="#{tRequestBean.refresh()}"
+                                         actionListener="#{insReqCallBean.insertReqCall()}" onclick="#{tCallBean.clear()} createPrezayavkaDialog.hide()"/>
+                        <p:commandButton id="createPrezayavkaDialogNO" style="left: 80%" value="Отмена" 
+                                         update=":mainFormCPD1:createPrezayavkaDisplay"
+                                         action="#{insReqCallBean.clearTimerCall()}"
+                                         actionListener="#{technicalSessionBean.clearTimerCall()}" onclick="createPrezayavkaDialog.hide()"/>
+
+                </p:dialog>
+                
+            </h:form>
+        
+            <h:form id="mainFormCPD">   
+                
+                <p:dialog id="changePrezayavkaDialog" header="Звонок" widgetVar="changePrezayavkaDialog" resizable="false" modal="true"
+                          width="900" styleClass="tRequest" closable="false" > 
+                    
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    
+                    <h:panelGrid id="changePrezayavkaDisplay" columns="1">
+                        
+                    <h:panelGrid id="changePrezayavkaDisplay1" columns="6">
+                    <h:outputText value="Заявка №:" />  
+                    <p:inputText id="resIDCPD2" value="#{tRequestBean.selectedReq.resID}" disabled="true" style="text-align: right"/>     
+                    <h:outputText value="Время:" />
+                    <p:inputText id="cSDateCPD2" value="#{tRequestBean.selectedReq.CSDate}" disabled="true"/>  
+                    <h:outputLabel value="Тип заявки:" />  
+                    <p:inputText id="frmNameCPD2" value="#{tRequestBean.selectedReq.frmName}" disabled="true"/> 
+
+                    <h:outputLabel value="Фамилия: " />  
+                    <p:inputText id="LNameCPD2" value="#{tRequestBean.selectedReq.LName}"/>  
+                    <h:outputLabel value="Телефон: " /> 
+                    <p:inputText id="phoneCPD2" value="#{tRequestBean.selectedReq.phone}"/>
+                    <h:outputLabel value="Источник: " />   
+                    <p:selectOneMenu id="sourceCPD2" value="#{tRequestBean.selectedSrc}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tSourceBean.sourceList}" var="sour" itemValue="#{sour}" itemLabel="#{sour.srcName}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Имя: " /> 
+                    <p:inputText id="FNameCPD2" value="#{tRequestBean.selectedReq.FName}"/>
+                    <h:outputLabel value="Домашний: " /> 
+                    <p:inputText id="phone2CPD2" value="#{tRequestBean.selectedReqG.hphone}"/> 
+                    <h:outputLabel value="Удобный ДО: " /> 
+                    <p:selectOneMenu id="DOCPD2" value="#{tRequestBean.selectedOff}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tOfficeBean.offList}" var="off" itemValue="#{off}" itemLabel="#{off.offName}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Отчество: " />
+                    <p:inputText id="SNameCPD2" value="#{tRequestBean.selectedReq.SName}"/>
+                    <h:outputLabel value="Рабочий: " /> 
+                    <p:inputText id="phone3CPD2" value="#{tRequestBean.selectedReqG.wphone}"/> 
+                    <h:outputLabel value="Тип клиента: " /> 
+                    <h:outputLabel value="" /> 
+                    
+                    <h:outputLabel value="E-mail: " /> 
+                    <p:inputText id="emaillCPD2" value="#{tRequestBean.selectedReq.emaill}"/>
+                    <h:outputLabel value="Дата рожд.: " /> 
+                    <p:calendar id="bDateCPD2" value="#{tRequestBean.selectedReqG.BDate}" showOn="button" navigator="true" locale="ru"
+                            showButtonPanel="true" effect="slideDown" effectDuration="slideDown" pattern="dd.MM.yyyy"/>
+                    <h:outputLabel value="Гражд. РФ: " /> 
+                    <p:selectBooleanCheckbox id="nGRRFCPD2" value="#{tRequestBean.selectedReqG.isRes}"/> 
+                    
+                    <h:outputLabel value="Регион регистр.: " />   
+                    <p:selectOneMenu id="regionCPD2" value="#{tRequestBean.selectedReg}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tRegionBean.regList}" var="reg" itemValue="#{reg}" itemLabel="#{reg.regName}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="трудоустр.: " />   
+                    <p:selectOneMenu id="wregionCPD2" value="#{tRequestBean.selectedWReg}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tRegionBean.regList}" var="wreg" itemValue="#{wreg}" itemLabel="#{wreg.regName}"/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="Доход по: " />  
+                    <p:selectOneMenu id="confirmCPD2" value="#{tRequestBean.selectedConfirm}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItem itemValue="2НДФЛ" itemLabel="2НДФЛ"/>
+                        <f:selectItem itemValue="Форма Банка" itemLabel="Форма Банка"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Стаж текущий: " />  
+                    <p:selectOneMenu id="tSeniorityCPD2" value="#{tRequestBean.selectedTSeniority}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItem itemValue="4 и более мес." itemLabel="4 и более мес."/>
+                        <f:selectItem itemValue="менее 4 мес." itemLabel="менее 4 мес."/>
+                    </p:selectOneMenu>
+                    <h:outputLabel value="общий: " />  
+                    <p:selectOneMenu id="cSeniorityCPD2" value="#{tRequestBean.selectedCSeniority}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItem itemValue="12 и более мес." itemLabel="12 и более мес."/>
+                        <f:selectItem itemValue="менее 12 мес." itemLabel="менее 12 мес."/>
+                    </p:selectOneMenu>
+                    
+                    </h:panelGrid>
+                       
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="ПАРАМЕТРЫ КРЕДИТА: " styleClass="tRequestHeader"/>
+                    
+                    <h:panelGrid id="changePrezayavkaDisplay2" columns="6">       
+                    <h:outputLabel value="Продукт: " />   
+                    <p:selectOneMenu id="productCPD2" value="#{tRequestBean.selectedPro}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tProductBean.proList}" var="prod" itemValue="#{prod}" itemLabel="#{prod.proName}"/>
+                    </p:selectOneMenu> 
+                    
+                    <h:outputLabel value="Тариф: " />   
+                    <p:selectOneMenu id="tariffCPD2" value="#{tRequestBean.selectedTariff}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tTariffBean.trfList}" var="trf" itemValue="#{trf}" itemLabel="#{trf.trfName}"/>
+                    </p:selectOneMenu> 
+                    
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value=""/>
+                    
+                    <h:outputLabel value="Сумма: " /> 
+                    <p:inputText id="val" value="#{tRequestBean.selectedReqG.val}" maxlength="13" converter="javax.faces.Double"/>
+                    
+                    <h:outputLabel value="Валюта: " />   
+                    <p:selectOneMenu id="currencyCPD2" value="#{tRequestBean.selectedCur}" editable="true" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tCurrencyBean.curList}" var="cur" itemValue="#{cur}" itemLabel="#{cur.curName}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Срок, мес: " /> 
+                    <p:inputText id="term" value="#{tRequestBean.selectedReqG.term}" maxlength="3" converter="javax.faces.Integer"/>
+                          
+                    </h:panelGrid>
+                    
+                    <h:outputLabel value=""/>
+                    <h:outputLabel value="СТАТУС ЗАЯВКИ: " styleClass="tRequestHeader"/>
+                    
+                    <h:panelGrid id="changePrezayavkaDisplay3" columns="6">
+                        
+                    <h:outputLabel value="Статус: " />   
+                    <p:selectOneMenu id="statusCPD2" value="#{tRequestBean.selectedReqG.product}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItems value="#{tReqStatusBean.reqStatusStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel value="Повторный звонок: " />
+                    <h:outputLabel value="" />
+                    
+                    <h:outputLabel value="Время: " />   
+                    <p:selectOneMenu id="timeCPD2" value="#{tRequestBean.selectedReqG.product}" style="width: 200px" panelStyleClass="tRequest">
+                        <f:selectItem itemValue="" itemLabel=""/>
+                        <f:selectItems value="#{tPeriodBean.perStringList}"/>
+                    </p:selectOneMenu>
+                    
+                    <p:message for="val" display="tooltip" />
+                    <p:message for="term" display="tooltip" />
+                    
+                    </h:panelGrid>
+                    
+                    <p:column colspan="1"><h:outputLabel value="Комментарий: " /></p:column>
+                    <p:column colspan="2"><p:inputTextarea id="noteCPD2" value="#{tRequestBean.selectedReq.note}" cols="100" autoResize="false" /></p:column>
+                    
+                    </h:panelGrid>
+                    
+                        <p:commandButton id="changePrezayavkaDialogOK" style="left: 80%" value="ОК" ajax="false" validateClient="true"
+                                         update=":mainForm:mainTable :mainFormCPD:changePrezayavkaDisplay :mainForm:createCallDisplay :mainFormCPD1:createPrezayavkaDisplay :mainForm:tabView:callTable :mainForm:tabView:anketaTable :mainForm:tabView:statusTable"/>
+                                         
+                        <p:commandButton id="changePrezayavkaDialogNO" style="left: 80%" value="Отмена"
+                                         update=":mainFormCPD:changePrezayavkaDisplay" 
+                                         action="#{tRequestBean.loadSelectedReq()}" onclick="changePrezayavkaDialog.hide()"/>
+
+                </p:dialog>
+               
+               
+        </h:form>
+        
+       
+</h:body>
+
+</html>

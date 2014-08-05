@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="EdssService" targetNamespace="http://www.athena.ru/ws/edss" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.athena.ru/ws/edss" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://www.athena.ru/edss/common">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="http://www.athena.ru/ws/edss" schemaLocation="EdssService_schema1.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://www.athena.ru/edss/common" schemaLocation="EdssService_schema2.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="DEVReestrInsert">
+    <part name="parameters" element="tns:DEVReestrInsert">
+    </part>
+  </message>
+  <message name="DEVReestrInsertResponse">
+    <part name="parameters" element="tns:DEVReestrInsertResponse">
+    </part>
+  </message>
+  <message name="DEVReestrDelete">
+    <part name="parameters" element="tns:DEVReestrDelete">
+    </part>
+  </message>
+  <message name="DEVReestrDeleteResponse">
+    <part name="parameters" element="tns:DEVReestrDeleteResponse">
+    </part>
+  </message>
+  <message name="EdssFault">
+    <part name="fault" element="ns1:fault">
+    </part>
+  </message>
+  <portType name="EdssPortType">
+    <operation name="DEVReestrInsert">
+      <input message="tns:DEVReestrInsert">
+    </input>
+      <output message="tns:DEVReestrInsertResponse">
+    </output>
+      <fault name="EdssFault" message="tns:EdssFault">
+    </fault>
+    </operation>
+    <operation name="DEVReestrDelete">
+      <input message="tns:DEVReestrDelete">
+    </input>
+      <output message="tns:DEVReestrDeleteResponse">
+    </output>
+      <fault name="EdssFault" message="tns:EdssFault">
+    </fault>
+    </operation>
+  </portType>
+  <binding name="EdssPortBinding" type="tns:EdssPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="DEVReestrInsert">
+      <soap:operation soapAction="http://www.athena.ru/ws/edss/DEVReestrInsert"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="EdssFault">
+        <soap:fault name="EdssFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="DEVReestrDelete">
+      <soap:operation soapAction="http://www.athena.ru/ws/edss/DEVReestrDelete"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="EdssFault">
+        <soap:fault name="EdssFault" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="EdssService">
+    <port name="EdssPort" binding="tns:EdssPortBinding">
+      <soap:address location="http://v-ibank-gate:9080/ws/edss/EdssService"/>
+    </port>
+  </service>
+</definitions>

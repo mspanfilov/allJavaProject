@@ -1,0 +1,16 @@
+
+.tRequestHeader {
+font: bold 9pt Arial,Helvetica,sans-serif;
+}
+
+.tRequest {
+font: normal 8pt Arial,Helvetica,sans-serif; 
+}
+
+.tRequestGreen {
+font: normal 8pt Arial,Helvetica,sans-serif;color: green; 
+}
+
+.tRequestBlue {
+font: normal 8pt Arial,Helvetica,sans-serif;color: blue; 
+}
