@@ -67,9 +67,15 @@ public class TTariffBean implements Serializable {
             Logger.getLogger(TTariffBean.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                result.close();
- 		stmt.close(); 
- 		conn.close();
+                if (result != null) { 
+                    result.close();
+                }
+                if (stmt != null) { 
+                    stmt.close(); 
+                }
+                if (conn != null) { 
+                    conn.close();
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(TTariffBean.class.getName()).log(Level.SEVERE, null, ex);
             }
